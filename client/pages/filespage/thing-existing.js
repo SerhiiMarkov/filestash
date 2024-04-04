@@ -512,6 +512,7 @@ const DateTime = (props) => {
         }
         return t.getFullYear() + "-" + leftPad((t.getMonth() + 1).toString(), 2) + "-" + leftPad(t.getDate().toString(), 2);
     }
+    console.log('DateTime ', props);
 
     if (props.show === false) {
         return null;
@@ -519,7 +520,7 @@ const DateTime = (props) => {
 
     return (
         <span className="component_datetime">
-            <span>{displayTime(props.timestamp)}</span>
+            <span>time: {displayTime(props.timestamp)}</span>
         </span>
     );
 };
