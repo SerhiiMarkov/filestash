@@ -19,7 +19,7 @@ const $tmpl = createElement(`
                         <span>__TEMPLATE__<span class="extension"></span></span>
                     </span>
                 </span>
-                <span class="component_datetime">datetime: <span>06/06/2020</span></span>
+                <span class="component_datetime"><span>06/06/2020</span></span>
                 <div class="component_action"></div>
                 <div class="selectionOverlay"></div>
             </div>
