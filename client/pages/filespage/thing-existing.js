@@ -505,14 +505,21 @@ const DateTime = (props) => {
         if (!timestamp || timestamp < 0) {
             return "";
         }
-        const t = new Date(timestamp);
-        if("DateTimeFormat" in Intl) {
-            const str = new Intl.DateTimeFormat({ dateStyle: "short" }).format(t);
-            if (str.length <= 10) return str;
-        }
-        return t.getFullYear() + "-" + leftPad((t.getMonth() + 1).toString(), 2) + "-" + leftPad(t.getDate().toString(), 2);
+        const formatDate = (date) => {
+            const datePart = [
+                date.getDate(),
+                date.getMonth() + 1,
+                date.getFullYear(),
+            ].map((n, i) => n.toString().padStart(i === 2 ? 4 : 2, "0")).join(".");
+            const timePart = [
+                date.getHours(),
+                date.getMinutes(),
+                date.getSeconds(),
+            ].map((n, i) => n.toString().padStart(2, "0")).join(":");
+            return `${datePart} ${timePart}`;
+        };
+        return formatDate(new Date(timestamp));
     }
-    console.log('DateTime ', props);
 
     if (props.show === false) {
         return null;
@@ -520,7 +527,7 @@ const DateTime = (props) => {
 
     return (
         <span className="component_datetime">
-            <span>time: {displayTime(props.timestamp)}</span>
+            <span>{displayTime(props.timestamp)}</span>
         </span>
     );
 };
